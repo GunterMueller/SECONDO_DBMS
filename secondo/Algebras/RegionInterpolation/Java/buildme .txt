@@ -1,0 +1,42 @@
+First install ant.
+
+-------------------------------------------
+For example you can do it in this way:
+
+
+Make sure you have a Java environment installed
+
+Enter the URL: http://ant.apache.org/bindownload.cgi.
+
+On the Apache Ant Project page, find the heading Current Release of Ant. 
+
+Save and extract the package file into a Linux home directory.
+
+Set the ANT_OPTS environment variable:
+export ANT_OPTS="-Xmx256M"
+
+Set the ANT_HOME environment variable to the directory where you installed Ant:
+export ANT_HOME={ant_dir}
+
+Set the PATH environment variable to include the directory where you installed the Ant bin directory:
+export PATH=${PATH}:${ANT_HOME}/bin
+
+
+
+From the ANT_HOME directory run 
+
+ant -f fetch.xml -Ddest=system 
+
+------------------------------------------------
+
+
+Then build the project with the following command
+
+
+ant -Dplatforms.Java_HotSpot_TM__Client_VM_1.4.2_13-b06.home=/home/userxy/jdk1.8.0_112 jar
+
+
+Here "/home/userxy/jdk1.8.0_112" is an example of the path to your jdk home folder.
+Adjust this path accordingly.
+
+You will find the MCInterpolator.jar file in the dist subfolder of this directory.

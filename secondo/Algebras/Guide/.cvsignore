@@ -1,0 +1,15 @@
+*.o
+*.a
+*.dep
+*.fm
+*.class
+*.toc
+*.aux
+*.dvi
+*.log
+*.pdf
+*.tex
+*.doc
+*.ps
+
+

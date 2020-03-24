@@ -1,0 +1,14 @@
+*.o
+*.a
+*.dep
+*.fm
+*.class
+*.aux
+*.dvi
+*.log
+*.pdf
+*.tex
+*.toc
+.*.sw?
+compile_commands.json
+README.html

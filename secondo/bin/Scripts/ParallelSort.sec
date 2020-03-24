@@ -1,0 +1,29 @@
+# Parallel sorting for dfarrays
+
+let myPort = 1238
+
+let Size = BuildingsB1 dmap["", . feed count] getValue tie[. + ..];
+# let NSlots = size(BuildingsB1);
+let Fraction = (Size div NSlots) div 500;
+query share("Fraction", TRUE, Workers14);
+
+let Boundaries = BuildingsB1 dmap["", . feed nth[Fraction, FALSE] 
+  project[Osm_id]] dsummarize sort nth[500, TRUE] addcounter[D, 1]
+  consume
+
+query share("Boundaries", TRUE, Workers14)
+
+query BuildingsB1 dcommand[’query meminit(3600)’] consume;
+query BuildingsB1 
+  dlet["BoundariesM", ’Boundaries feed mconsume’] consume;
+query BuildingsB1 
+  dlet["Boundaries_Osm_id", ’BoundariesM mcreateAVLtree[Osm_id]’] 
+  consume;
+
+let BuildingsSortedOsm_idA = BuildingsB1 
+  partition["", 
+    Boundaries_Osm_id BoundariesM matchbelow2[.Osm_id, D, 0],  
+    0] 
+
+let BuildingsSortedOsm_id = BuildingsSortedOsm_idA
+  areduce["", . feed sortby[Osm_id], myPort] 
