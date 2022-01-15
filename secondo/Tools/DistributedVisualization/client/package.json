@@ -29,7 +29,7 @@
     "@vue/cli-plugin-babel": "^3.6.0",
     "@vue/cli-plugin-typescript": "^3.6.0",
     "@vue/cli-service": "^3.6.0",
-    "shelljs": "^0.8.3",
+    "shelljs": "^0.8.5",
     "typescript": "^3.4.3",
     "vue-template-compiler": "^2.5.21"
   }
